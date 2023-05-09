@@ -163,8 +163,7 @@ def main():
 
         tmr += 1
         screen.blit(bg_img, [0, 0])
-        
-        
+
         for bomb in bombs:
             bomb.update(screen)
             if bird._rct.colliderect(bomb._rct):
