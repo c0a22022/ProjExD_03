@@ -7,7 +7,7 @@ import pygame as pg
 
 WIDTH = 1600  # ゲームウィンドウの幅
 HEIGHT = 900  # ゲームウィンドウの高さ
-NUM_OF_BOMBS = 5  # 爆弾の数
+NUM_OF_BOMBS = 4  # 爆弾の数
 
 
 def check_bound(area: pg.Rect, obj: pg.Rect) -> tuple[bool, bool]:
@@ -143,7 +143,6 @@ class Beam:
         self._rct.move_ip(self._vx, self._vy)
         screen.blit(self._img, self._rct)
 
-
 def main():
     pg.display.set_caption("たたかえ！こうかとん")
     screen = pg.display.set_mode((WIDTH, HEIGHT))
@@ -169,11 +168,17 @@ def main():
         for bomb in bombs:
             bomb.update(screen)
             if bird._rct.colliderect(bomb._rct):
-                # ゲームオーバー時に，こうかとん画像を切り替え，1秒間表示させる
+                bomb.update(screen)
                 bird.change_img(8, screen)
-                pg.display.update()
-                time.sleep(1)
+                font1 = pg.font.SysFont(None, 100)
+                text1 = font1.render("GAME OVER",True,(0,0,0))  
+                screen.blit(text1, (600,350)) # テキストを描画
+                pg.display.update() # 描画処理を実行
+                # ゲームオーバー時に，こうかとん画像を切り替え，1秒間表示させる
+                time.sleep(3)
+
                 return
+
             
         key_lst = pg.key.get_pressed()
         bird.update(key_lst, screen)
