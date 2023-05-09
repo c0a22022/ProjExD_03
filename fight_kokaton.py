@@ -175,7 +175,6 @@ def main():
                 pg.display.update() # 描画処理を実行
                 # ゲームオーバー時に，こうかとん画像を切り替え，1秒間表示させる
                 time.sleep(3)
-
                 return
 
         key_lst = pg.key.get_pressed()
