@@ -178,7 +178,6 @@ def main():
 
                 return
 
-            
         key_lst = pg.key.get_pressed()
         bird.update(key_lst, screen)
 
